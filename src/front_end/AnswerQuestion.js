@@ -15,7 +15,7 @@ function answerQuestion(){
     //get list of all the questions
 
     var questionslist = qAndA()
-    var questionmap = questionslist(counter()-1)
+    var questionmap = questionslist[counter()-1]
 
     //add elements
     var p = document.createElement("p");
@@ -33,13 +33,26 @@ function answerQuestion(){
 
     //loop all the elements in the choices list
 
-    for(var i in questionmap[choices].length){
-        var y1 = document.createElement("LI");
-        y1.setAttribute("id", "y1");
-        var t1 = document.createTextNode(questionmap["choices"](i));
-        y1.appendChild(t1);
-        document.getElementById("selectable").appendChild(y1);
+    for(var i in questionmap["choices"].length){
+        var y = document.createElement("LI");
+        y.setAttribute("id", "y"+String(counter()));
+        var t = document.createTextNode(questionmap["choices"][i]);
+        y.appendChild(t);
+        document.getElementById("selectable").appendChild(y);
     }
+    //How many questions left?
+
+    var pdiv = document.createElement("div");
+    pdiv.setAttribute("id", "pdiv");
+    clockdiv.appendChild(pdiv);
+    var pnum = document.createElement("P");
+    pnum.setAttribute("id", "num");
+    var word = document.createTextNode("1/20");
+    pnum.appendChild(word);
+    pdiv.appendChild(pnum);
+
+
+
 
     var k = document.createElement("INPUT");
     k.setAttribute("type", "submit");
@@ -49,16 +62,37 @@ function answerQuestion(){
     document.getElementById("submit").value = "Submit";
 
 
+    // Next Page
 
-    var k = document.createElement("INPUT");
-    k.setAttribute("type", "submit");
-    k.setAttribute("id", "submit");
-    k.setAttribute("onclick", "AnswerQuestion()");
-    element.appendChild(k);
-    document.getElementById("submit").value = "Next Question";
+    if (counter()-1 == 19){
+        var k = document.createElement("INPUT");
+        k.setAttribute("type", "submit");
+        k.setAttribute("id", "submit");
+        k.setAttribute("onclick", "final()");
+        element.appendChild(k);
+
+        document.getElementById("submit").value = "See Result";
+    }
+
+
+    else{
+        var k = document.createElement("INPUT");
+        k.setAttribute("type", "submit");
+        k.setAttribute("id", "submit");
+        k.setAttribute("onclick", "AnswerQuestion()");
+        element.appendChild(k);
+
+        document.getElementById("submit").value = "Next Question";
+    }
+
+
+
+
 
     $( function() {
         $( "#selectable" ).selectable();
     } );
 
 }
+
+
