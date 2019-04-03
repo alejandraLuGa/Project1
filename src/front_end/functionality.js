@@ -13,12 +13,16 @@ function qAndA () {
     return listRet
 }
 
-var list1 = qAndA ()
-var list2 = list1[0]["choices"]
+//testing for qAndA()
+//console.log (qAndA ())
+
 
 function shuffleAnswers (list1) {
-    list1.sort(function(a, b){return 0.5 - Math.random()});
+  list1.sort(function(a, b){return 0.5 - Math.random()});
+  return list1
 
 }
-
-console.log(shuffleAnswers (list2));
+//testing for shuffleAnswers()
+//console.log(list1[0]["choices"]);
+//console.log(shuffleAnswers (list1[0]["choices"]));
+//console.log(list1[0]["choices"]);
