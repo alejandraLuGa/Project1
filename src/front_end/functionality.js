@@ -12,10 +12,8 @@ function qAndA () {
     }
     return listRet
 }
-
 //testing for qAndA()
 //console.log (qAndA ())
-
 
 function shuffleAnswers (list1) {
   list1.sort(function(a, b){return 0.5 - Math.random()});
@@ -26,3 +24,15 @@ function shuffleAnswers (list1) {
 //console.log(list1[0]["choices"]);
 //console.log(shuffleAnswers (list1[0]["choices"]));
 //console.log(list1[0]["choices"]);
+
+function shuffleAnsInList (list1){
+  for (var i = 0; i < list1.length; i++){
+    shuffleAnswers (list1[i]["choices"])
+    shuffleAnswers (list1[i]["choices"])
+  }
+}
+//testing for shuffleAnsInList()
+//var list1 = qAndA()
+//console.log(list1);
+//shuffleAnsInList(list1)
+//console.log(list1);
