@@ -3,15 +3,24 @@ function answerQuestion(){
     var ol = document.getElementById("selectable");
     var submit = document.getElementById("submit");
     var element = document.getElementById("set");
-    h2.innerHTML = "Question 1:";
+    var string = "Question "+String(counter())+":"
+    h2.innerHTML = string;
+
 
     //delete elements
     element.removeChild(ol);
     element.removeChild(submit);
+
+
+    //get list of all the questions
+
+    var questionslist = qAndA()
+    var questionmap = questionslist(counter()-1)
+
     //add elements
     var p = document.createElement("p");
     p.setAttribute("id", "p11");
-    var w = document.createTextNode("Which of these cities is closest to London, UK?");
+    var w = document.createTextNode(questionmap["question"]);
     p.appendChild(w);
     element.appendChild(p);
 
@@ -20,17 +29,14 @@ function answerQuestion(){
     ol01.setAttribute("id", "selectable");
     element.appendChild(ol01);
 
-    //get list of all the questions
 
-    var questionslist = qAndA("QuestionsAndFiles")
-    var questionmap = questionslist(0)
 
     //loop all the elements in the choices list
 
     for(var i in questionmap[choices].length){
         var y1 = document.createElement("LI");
         y1.setAttribute("id", "y1");
-        var t1 = document.createTextNode(questionmap[choices](i));
+        var t1 = document.createTextNode(questionmap["choices"](i));
         y1.appendChild(t1);
         document.getElementById("selectable").appendChild(y1);
     }
@@ -56,4 +62,3 @@ function answerQuestion(){
     } );
 
 }
-</script>
