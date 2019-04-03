@@ -1,0 +1,359 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GUESS</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <-link rel="stylesheet" href="/resources/demos/style.css"->
+    <link rel="stylesheet" type="text/css" href="demo11.css">
+    <style>
+
+    </style>
+
+
+    <-script src="https://code.jquery.com/jquery-1.12.4.js"-><-/-script>
+    <-script- src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"-><-/script->
+
+</head>
+<body>
+
+<br>
+
+<br>
+<br>
+<h1>Guessing Game</h1>
+<div id="abc" class="list">
+    <div id="clockdiv"></div>
+    <div id="set">
+        <h2 id="h2">Game Rule</h2>
+        <h3 id="h3">There will be 20 users in this game. Players have to
+            collectively compete as they answer within 200 seconds. There will be 20 questions in a round. All the questions are multiple choices.
+            Each of you will pick up one question before the game starts.
+            And the question you pick will later show up in the game with random order.
+            The one who get the fastest and highest score will be the winner!
+        </h3>
+        <br>
+        <button id="foo" onclick="typename()">Start</button>
+
+    </div>
+</div>
+<script src="typename.js"></script>
+
+<script>
+    function pickQ(){
+        var h2 = document.getElementById("h2");
+        var name1 = document.getElementById("name1");
+        var submit = document.getElementById("submit");
+        var element = document.getElementById("set");
+        h2.innerHTML = "Let's pick a Question!";
+        //delete elements
+        element.removeChild(name1);
+        element.removeChild(submit);
+
+        //add elements
+        var ol = document.createElement("OL");
+        ol.setAttribute("id", "selectable");
+        element.appendChild(ol);
+
+        var y = document.createElement("LI");
+        var t = document.createTextNode("Which of these cities is closest to London, UK?");
+        y.appendChild(t);
+        document.getElementById("selectable").appendChild(y);
+
+        var y1 = document.createElement("LI");
+        var t1 = document.createTextNode("What is the largest planet in our Solar System?");
+        y1.appendChild(t1);
+        document.getElementById("selectable").appendChild(y);
+        var y2 = document.createElement("LI");
+        var t2 = document.createTextNode("Adele performed the theme song to which James Bond film?");
+        y2.appendChild(t2);
+        document.getElementById("selectable").appendChild(y);
+        var y3 = document.createElement("LI");
+        var t3 = document.createTextNode("What was the first successful vaccine developed in history?");
+        y3.appendChild(t3);
+        document.getElementById("selectable").appendChild(y);
+        var y4 = document.createElement("LI");
+        var t4 = document.createTextNode("What is the color of Donald Duck's bowtie?");
+        y4.appendChild(t4);
+        document.getElementById("selectable").appendChild(y);
+
+        var k = document.createElement("INPUT");
+        k.setAttribute("type", "submit");
+        k.setAttribute("id", "submit");
+        k.setAttribute("onclick", "answerQ()");
+        element.appendChild(k);
+        document.getElementById("submit").value = "Let's Play!";
+
+
+        $( function() {
+            $( "#selectable" ).selectable();
+        } );
+
+    }
+
+</script>
+
+
+
+<script>
+    function answerQ(){
+        var h2 = document.getElementById("h2");
+        var ol = document.getElementById("selectable");
+        var submit = document.getElementById("submit");
+        var element = document.getElementById("set");
+        h2.innerHTML = "Question 1:";
+        //delete elements
+        element.removeChild(ol);
+        element.removeChild(submit);
+        //add elements
+        var p = document.createElement("p");
+        p.setAttribute("id", "p11");
+        var w = document.createTextNode("Which of these cities is closest to London, UK?");
+        p.appendChild(w);
+        element.appendChild(p);
+
+
+        var ol01 = document.createElement("OL");
+        ol01.setAttribute("id", "selectable");
+        element.appendChild(ol01);
+
+        var y1 = document.createElement("LI");
+        y1.setAttribute("id", "y1");
+        var t1 = document.createTextNode("Boston, MA");
+        y1.appendChild(t1);
+        document.getElementById("selectable").appendChild(y1);
+
+        var y2 = document.createElement("LI");
+        y2.setAttribute("id", "y2");
+        var t2 = document.createTextNode("New York, NY");
+        y2.appendChild(t2);
+        document.getElementById("selectable").appendChild(y2);
+
+
+        var y3 = document.createElement("LI");
+        y3.setAttribute("id", "y3");
+        var t3 = document.createTextNode("Atlanta, GA");
+        y3.appendChild(t3);
+        document.getElementById("selectable").appendChild(y3);
+
+
+        var y4 = document.createElement("LI");
+        y4.setAttribute("id", "y4");
+        var t4 = document.createTextNode("Miami, FL");
+        y4.appendChild(t4);
+        document.getElementById("selectable").appendChild(y4);
+
+
+        var k = document.createElement("INPUT");
+        k.setAttribute("type", "submit");
+        k.setAttribute("id", "submit");
+        k.setAttribute("onclick", "answerQ1()");
+        element.appendChild(k);
+        document.getElementById("submit").value = "Next Question";
+
+
+        <!-------------------------------------timer----------------------------------------->
+
+        var clockdiv = document.getElementById("clockdiv");
+        var divtime = document.createElement("div");
+        divtime.setAttribute("id", "timediv")
+        clockdiv.appendChild(divtime);
+        var timediv = document.getElementById("timediv");
+        var span = document.createElement("span");
+        span.setAttribute("id", "span");
+        span.setAttribute("class", "seconds")
+        timediv.appendChild(span);
+
+
+        var div2 = document.createElement("div");
+        div2.setAttribute("id", "div2");
+        div2.setAttribute("class", "smalltext");
+        var ww = document.createTextNode("Seconds");
+        div2.appendChild(ww);
+        timediv.appendChild(div2);
+
+        function getTimeRemaining(endtime) {
+            var t = Date.parse(endtime) - Date.parse(new Date());
+            var seconds = Math.floor((t / 1000) % 60);
+            return {
+                'total': t,
+                'seconds': seconds
+            };
+        }
+
+        function initializeClock(id, endtime) {
+            var clock = document.getElementById(id);
+            var secondsSpan = clock.querySelector('.seconds');
+
+            function updateClock() {
+                var t = getTimeRemaining(endtime);
+                secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+                if (t.total <= 0) {
+                    clearInterval(timeinterval);
+                }
+            }
+
+            updateClock();
+            var timeinterval = setInterval(updateClock, 1000);
+        }
+
+        var deadline = new Date(Date.parse(new Date()) +  20 * 1000);
+        initializeClock('clockdiv', deadline);
+
+
+
+
+        <!-------------------------------------timer end----------------------------------------->
+        var pdiv = document.createElement("div");
+        pdiv.setAttribute("id", "pdiv");
+        clockdiv.appendChild(pdiv);
+        var pnum = document.createElement("P");
+        pnum.setAttribute("id", "num");
+        var word = document.createTextNode("1/4");
+        pnum.appendChild(word);
+        pdiv.appendChild(pnum);
+
+
+
+        $( function() {
+            $( "#selectable" ).selectable();
+        } );
+
+    }
+</script>
+
+
+<script>
+    function answerQ1(){
+        var h2 = document.getElementById("h2");
+        var p = document.getElementById("p11");
+        var y1 = document.getElementById("y1");
+        var y2 = document.getElementById("y2");
+        var y3 = document.getElementById("y3");
+        var y4 = document.getElementById("y4");
+        var submit = document.getElementById("submit");
+        var element = document.getElementById("set");
+        var pnum = document.getElementById("num");
+        h2.innerHTML = "Question 2:";
+        p.innerHTML = "Which country hosted the Summer Olympics in 2016?";
+        y1.innerHTML = "China";
+        y2.innerHTML = "Brazil";
+        y3.innerHTML = "Greece";
+        y4.innerHTML = "Spain";
+        pnum.innerHTML = "2/4";
+        submit.setAttribute("onclick", "answerQ2()");
+        document.getElementById("submit").value = "Next Question";
+    }
+</script>
+
+<script>
+    function answerQ2(){
+        var h2 = document.getElementById("h2");
+        var p = document.getElementById("p11");
+        var y1 = document.getElementById("y1");
+        var y2 = document.getElementById("y2");
+        var y3 = document.getElementById("y3");
+        var y4 = document.getElementById("y4");
+        var submit = document.getElementById("submit");
+        var element = document.getElementById("set");
+        var pnum = document.getElementById("num");
+        h2.innerHTML = "Question 3:";
+        p.innerHTML = "Which mammal first reached Earth's orbit alive?";
+        y1.innerHTML = "Human";
+        y2.innerHTML = "Cat";
+        y3.innerHTML = "Monkey";
+        y4.innerHTML = "Dog";
+        pnum.innerHTML = "3/4";
+        submit.setAttribute("onclick", "answerQ3()");
+        document.getElementById("submit").value = "Next Question";
+    }
+</script>
+
+<script>
+    function answerQ3(){
+        var h2 = document.getElementById("h2");
+        var p = document.getElementById("p11");
+        var y1 = document.getElementById("y1");
+        var y2 = document.getElementById("y2");
+        var y3 = document.getElementById("y3");
+        var y4 = document.getElementById("y4");
+        var submit = document.getElementById("submit");
+        var element = document.getElementById("set");
+        var pnum = document.getElementById("num");
+        h2.innerHTML = "Question 4:";
+        p.innerHTML = " What is the color of Donald Duck's bowtie?";
+        y1.innerHTML = "Red";
+        y2.innerHTML = "Green";
+        y3.innerHTML = "Yellow";
+        y4.innerHTML = "Blue";
+        pnum.innerHTML = "4/4";
+        submit.setAttribute("onclick", "final()");
+        document.getElementById("submit").value = "See Result";
+    }
+</script>
+
+
+
+<script>
+    function final(){
+        var abc = document.getElementById("abc");
+        var h2 = document.getElementById("h2");
+        var p = document.getElementById("p11");
+        var ol = document.getElementById("selectable");
+        var clockdiv = document.getElementById("clockdiv");
+        var submit = document.getElementById("submit");
+        var element = document.getElementById("set");
+        //delete elements
+        h2.innerHTML = "Ranking";
+        element.removeChild(ol);
+        element.removeChild(p);
+        element.removeChild(submit);
+
+        var oll = document.createElement("OL");
+        oll.setAttribute("id", "rank");
+        element.appendChild(oll);
+
+        var y1 = document.createElement("LI");
+        var t1 = document.createTextNode("Player 1"+ "  winner~");
+        y1.appendChild(t1);
+        document.getElementById("rank").appendChild(y1);
+
+        var y2 = document.createElement("LI");
+        var t2 = document.createTextNode("Player 2");
+        y2.appendChild(t2);
+        document.getElementById("rank").appendChild(y2);
+
+        var y3 = document.createElement("LI");
+        var t3 = document.createTextNode("Player 3");
+        y3.appendChild(t3);
+        document.getElementById("rank").appendChild(y3);
+
+        var y4 = document.createElement("LI");
+        var t4 = document.createTextNode("Player 4");
+        y4.appendChild(t4);
+        document.getElementById("rank").appendChild(y4);
+
+        var y5 = document.createElement("LI");
+        var t5 = document.createTextNode("Player 5");
+        y5.appendChild(t5);
+        document.getElementById("rank").appendChild(y5);
+
+
+        var k = document.createElement("INPUT");
+        k.setAttribute("type", "submit");
+        k.setAttribute("id", "submit");
+        k.setAttribute("onclick", "()");
+        element.appendChild(k);
+        document.getElementById("submit").value = "Restart";
+
+        abc.removeChild(clockdiv);
+
+
+    }
+</script>
+
+
+
+</body>
+</html>
