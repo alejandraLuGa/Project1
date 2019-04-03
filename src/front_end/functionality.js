@@ -17,7 +17,7 @@ var list1 = qAndA ()
 var list2 = list1[0]["choices"]
 
 function shuffleAnswers (list1) {
-  list1.sort(function(a, b){return 0.5 - Math.random()});
+    list1.sort(function(a, b){return 0.5 - Math.random()});
 
 }
 
