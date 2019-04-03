@@ -3,7 +3,7 @@ function answerQuestion(){
     var ol = document.getElementById("selectable");
     var submit = document.getElementById("submit");
     var element = document.getElementById("set");
-    var string = "Question "+String(counter())+":"
+    var string = "Question "+String(increment()-1)+":"
     h2.innerHTML = string;
 
 
@@ -15,7 +15,7 @@ function answerQuestion(){
     //get list of all the questions
 
     var questionslist = qAndA()
-    var questionmap = questionslist[counter()-1]
+    var questionmap = questionslist[increment()-2]
 
     //add elements
     var p = document.createElement("p");
@@ -35,21 +35,33 @@ function answerQuestion(){
 
     for(var i in questionmap["choices"].length){
         var y = document.createElement("LI");
-        y.setAttribute("id", "y"+String(counter()));
+        y.setAttribute("id", "y"+String(increment()-1));
         var t = document.createTextNode(questionmap["choices"][i]);
         y.appendChild(t);
         document.getElementById("selectable").appendChild(y);
     }
-    //How many questions left?
+
 
     var pdiv = document.createElement("div");
     pdiv.setAttribute("id", "pdiv");
     clockdiv.appendChild(pdiv);
+
+
+    //How many questions left?
     var pnum = document.createElement("P");
     pnum.setAttribute("id", "num");
-    var word = document.createTextNode("1/20");
+    var word = document.createTextNode(String(increment()-1)+"/20");
     pnum.appendChild(word);
+
+    //Score
+    var pnum2 = document.createElement("P");
+    pnum.setAttribute("id", "num2");
+
+    var word2 = document.createTextNode("Score: "+String(score));
+    pnum2.appendChild(word2);
+
     pdiv.appendChild(pnum);
+    pdiv.appendChild(pnum2);
 
 
 
@@ -63,8 +75,8 @@ function answerQuestion(){
 
 
     // Next Page
-
-    if (counter()-1 == 19){
+    var questionnum = increment()-2
+    if ( questionnum == 19){
         var k = document.createElement("INPUT");
         k.setAttribute("type", "submit");
         k.setAttribute("id", "submit");
@@ -73,21 +85,15 @@ function answerQuestion(){
 
         document.getElementById("submit").value = "See Result";
     }
-
-
     else{
-        var k = document.createElement("INPUT");
-        k.setAttribute("type", "submit");
-        k.setAttribute("id", "submit");
-        k.setAttribute("onclick", "AnswerQuestion()");
-        element.appendChild(k);
+        var k1 = document.createElement("INPUT");
+        k1.setAttribute("type", "submit");
+        k1.setAttribute("id", "submit");
+        k1.setAttribute("onclick", "AnswerQuestion()");
+        element.appendChild(k1);
 
         document.getElementById("submit").value = "Next Question";
     }
-
-
-
-
 
     $( function() {
         $( "#selectable" ).selectable();
