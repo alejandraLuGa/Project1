@@ -49,7 +49,7 @@ function final(){
     element.appendChild(k);
     document.getElementById("submit").value = "Restart";
 
-    abc.removeChild(clockdiv);
+    abc.removeChild(clockdiv);;;;
 
 
 }
