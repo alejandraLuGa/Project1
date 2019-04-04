@@ -3,8 +3,7 @@ function answerQuestion(){
     var ol = document.getElementById("selectable");
     var submit = document.getElementById("submit");
     var element = document.getElementById("set");
-    var string = "Question "+String(increment()-1)+":"
-    h2.innerHTML = string;
+    h2.innerHTML = "Question "+String(counter)+":";
 
 
     //delete elements
@@ -14,8 +13,8 @@ function answerQuestion(){
 
     //get list of all the questions
 
-    var questionslist = qAndA()
-    var questionmap = questionslist[increment()-2]
+    var questionslist = qAndA();
+    var questionmap = questionslist[counter-1];
 
     //add elements
     var p = document.createElement("p");
@@ -35,7 +34,7 @@ function answerQuestion(){
 
     for(var i in questionmap["choices"].length){
         var y = document.createElement("LI");
-        y.setAttribute("id", "y"+String(increment()-1));
+        y.setAttribute("id", "y"+String(counter));
         var t = document.createTextNode(questionmap["choices"][i]);
         y.appendChild(t);
         document.getElementById("selectable").appendChild(y);
@@ -50,7 +49,7 @@ function answerQuestion(){
     //How many questions left?
     var pnum = document.createElement("P");
     pnum.setAttribute("id", "num");
-    var word = document.createTextNode(String(increment()-1)+"/20");
+    var word = document.createTextNode(String(counter)+"/20");
     pnum.appendChild(word);
 
     //Score
@@ -75,14 +74,13 @@ function answerQuestion(){
 
 
     // Next Page
-    var questionnum = increment()-2
-    if ( questionnum == 19){
-        var k = document.createElement("INPUT");
-        k.setAttribute("type", "submit");
-        k.setAttribute("id", "submit");
-        k.setAttribute("onclick", "final()");
-        element.appendChild(k);
-
+    var num = counter-1;
+    if (num == 19){
+        var k0 = document.createElement("INPUT");
+        k0.setAttribute("type", "submit");
+        k0.setAttribute("id", "submit");
+        k0.setAttribute("onclick", "final()");
+        element.appendChild(k0);
         document.getElementById("submit").value = "See Result";
     }
     else{
