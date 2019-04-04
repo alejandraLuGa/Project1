@@ -1,14 +1,14 @@
-function answerQuestion(){
+function AnswerQuestion(){
     var h2 = document.getElementById("h2");
-    var ol = document.getElementById("selectable");
-    var submit = document.getElementById("submit");
-    var element = document.getElementById("set");
+    var name1 = document.getElementById("name1");
+    var submit01 = document.getElementById("submit01");
+    var set = document.getElementById("set");
     h2.innerHTML = "Question "+String(counter)+":";
 
 
     //delete elements
-    element.removeChild(ol);
-    element.removeChild(submit);
+    set.removeChild(name1);
+    set.removeChild(submit01);
 
 
     //get list of all the questions
@@ -21,29 +21,56 @@ function answerQuestion(){
     p.setAttribute("id", "p11");
     var w = document.createTextNode(questionmap["question"]);
     p.appendChild(w);
-    element.appendChild(p);
+    set.appendChild(p);
 
 
-    var ol01 = document.createElement("OL");
-    ol01.setAttribute("id", "selectable");
-    element.appendChild(ol01);
+    var ol = document.createElement("OL");
+    ol.setAttribute("id", "selectable");
+    set.appendChild(ol);
 
 
 
     //loop all the elements in the choices list
 
-    for(var i in questionmap["choices"].length){
-        var y = document.createElement("LI");
-        y.setAttribute("id", "y"+String(counter));
-        var t = document.createTextNode(questionmap["choices"][i]);
-        y.appendChild(t);
-        document.getElementById("selectable").appendChild(y);
-    }
+
+    var y = document.createElement("LI");
+    y.setAttribute("id", "y1");
+    y.setAttribute("value", questionmap["choices"][0]);
+    y.setAttribute("onclick", "myfuncc(this)");
+    var t = document.createTextNode(questionmap["choices"][0]);
+    y.appendChild(t);
+    document.getElementById("selectable").appendChild(y);
+
+    var y = document.createElement("LI");
+    y.setAttribute("id", "y2");
+    y.setAttribute("value", questionmap["choices"][1]);
+    y.setAttribute("onclick", "myfunc(this)");
+    var t = document.createTextNode(questionmap["choices"][1]);
+    y.appendChild(t);
+    document.getElementById("selectable").appendChild(y);
+
+    var y = document.createElement("LI");
+    y.setAttribute("id", "y3");
+    y.setAttribute("value", questionmap["choices"][2]);
+    y.setAttribute("onclick", "myfunc(this)");
+    var t = document.createTextNode(questionmap["choices"][2]);
+    y.appendChild(t);
+    document.getElementById("selectable").appendChild(y);
+
+    var y = document.createElement("LI");
+    y.setAttribute("id", "y4");
+    y.setAttribute("value", questionmap["choices"][3]);
+    y.setAttribute("onclick", "myfunc(this)");
+    var t = document.createTextNode(questionmap["choices"][3]);
+    y.appendChild(t);
+    document.getElementById("selectable").appendChild(y);
 
 
     var pdiv = document.createElement("div");
     pdiv.setAttribute("id", "pdiv");
     clockdiv.appendChild(pdiv);
+
+
 
 
     //How many questions left?
@@ -54,7 +81,7 @@ function answerQuestion(){
 
     //Score
     var pnum2 = document.createElement("P");
-    pnum.setAttribute("id", "num2");
+    pnum2.setAttribute("id", "num2");
 
     var word2 = document.createTextNode("Score: "+String(score));
     pnum2.appendChild(word2);
@@ -65,56 +92,30 @@ function answerQuestion(){
 
     // check answer
 
-    var y1 = document.getElementById("y1");
-    var y2 = document.getElementById("y2");
-    var y3 = document.getElementById("y3");
-    var y4 = document.getElementById("y4");
+
+
+
+
+
+
 
     var k = document.createElement("INPUT");
     k.setAttribute("type", "submit");
     k.setAttribute("id", "submit");
-    if (y1.checked){
-        k.setAttribute("onclick", "checkAnswer('y1',qAndA(),count)");
-    }
-    if (y2.checked){
-        k.setAttribute("onclick", "checkAnswer('y2',qAndA(),count)");
-    }
-    if (y3.checked){
-        k.setAttribute("onclick", "checkAnswer('y3',qAndA(),count)");
-    }
-    if (y4.checked){
-        k.setAttribute("onclick", "checkAnswer('y4',qAndA(),count)");
-    }
-
-    element.appendChild(k);
+    k.setAttribute("onclick","getid(answerid);nextpage()");
+    set.appendChild(k);
     document.getElementById("submit").value = "Submit";
 
-    if (document.getElementById('submit').onclick) {
-        // Next Page
-        var num = counter - 1;
-        if (num == 19) {
-            var k0 = document.createElement("INPUT");
-            k0.setAttribute("type", "submit");
-            k0.setAttribute("id", "submitnext");
-            k0.setAttribute("onclick", "final()");
-            element.appendChild(k0);
-            document.getElementById("submitnext").value = "See Result";
-        } else {
-            increment();
-            var k1 = document.createElement("INPUT");
-            k1.setAttribute("type", "submit");
-            k1.setAttribute("id", "submitnext");
-            k1.setAttribute("onclick", "AnswerQuestion()");
-            element.appendChild(k1);
 
-            document.getElementById("submitnext").value = "Next Question";
-        }
-    }
+
+    //after clicking submit
+
+
 
     $( function() {
         $( "#selectable" ).selectable();
     } );
 
-}
 
+}
 

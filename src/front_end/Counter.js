@@ -1,5 +1,5 @@
 
-var counter = 1
+var counter = 1;
 
 function increment() {
     counter += 1;
