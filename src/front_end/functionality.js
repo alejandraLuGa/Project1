@@ -12,6 +12,8 @@ function qAndA () {
     }
     return listRet
 }
+
+module.exports = qAndA;
 //testing for qAndA()
 //console.log (qAndA ())
 
@@ -21,6 +23,7 @@ function shuffleAnswers (list1) {
     return list1
 
 }
+module.exports = shuffleAnswers;
 //testing for shuffleAnswers()
 //console.log(list1[0]["choices"]);
 //console.log(shuffleAnswers (list1[0]["choices"]));
@@ -34,6 +37,7 @@ function shuffleAnsInList (list1){
         shuffleAnswers (list1[i]["choices"])
     }
 }
+module.exports = shuffleAnsInList;
 //testing for shuffleAnsInList()
 //var list1 = qAndA()
 //console.log(list1);

@@ -1,3 +1,4 @@
+const sum = require ('./qAndA')
 var score = 0
 
 function checkAnswer (answer,list1,c) {
@@ -23,9 +24,10 @@ function checkAnswer (answer,list1,c) {
         score += 0
     }
 }
+module.exports = checkAnswer;
 //testing for checkAnswer()
 //*****this works but I've to figure out how to import js files****
-//var list1 = qAndA ()
+//var list1 = qAndA ();
 //shuffleAnsInList (list1)
 //console.log(list1[0]["choices"]);
 //console.log(score);
