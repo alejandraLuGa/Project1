@@ -34,9 +34,9 @@ function NextQuestion(){
     y4.innerHTML = questionmap["choices"][3];
 
 
-    var answerid = "";
+
     function myfunc(e){
-        var x = e.getAttribute('id');
+        var x = e.getAttribute('value');
         answerid = x;
     }
 
@@ -54,5 +54,7 @@ function NextQuestion(){
 
 
 }
+
+
 
 
