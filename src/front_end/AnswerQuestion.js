@@ -36,7 +36,7 @@ function AnswerQuestion(){
     var y = document.createElement("LI");
     y.setAttribute("id", "y1");
     y.setAttribute("value", questionmap["choices"][0]);
-    y.setAttribute("onclick", "myfuncc(this)");
+    y.setAttribute("onclick", "myfunc(this)");
     var t = document.createTextNode(questionmap["choices"][0]);
     y.appendChild(t);
     document.getElementById("selectable").appendChild(y);
@@ -93,16 +93,10 @@ function AnswerQuestion(){
     // check answer
 
 
-
-
-
-
-
-
     var k = document.createElement("INPUT");
     k.setAttribute("type", "submit");
     k.setAttribute("id", "submit");
-    k.setAttribute("onclick","getid(answerid);nextpage()");
+    k.setAttribute("onclick","checkAnswers(answeid, qAndA(),counter);nextpage()");
     set.appendChild(k);
     document.getElementById("submit").value = "Submit";
 
@@ -117,5 +111,12 @@ function AnswerQuestion(){
     } );
 
 
+}
+
+var answerid = "ggg"
+
+function myfunc(e){
+    var x = e.getAttribute('value');
+    answerid = x;
 }
 
