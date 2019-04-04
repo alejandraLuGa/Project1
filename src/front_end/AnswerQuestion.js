@@ -63,34 +63,52 @@ function answerQuestion(){
     pdiv.appendChild(pnum2);
 
 
+    // check answer
 
+    var y1 = document.getElementById("y1");
+    var y2 = document.getElementById("y2");
+    var y3 = document.getElementById("y3");
+    var y4 = document.getElementById("y4");
 
     var k = document.createElement("INPUT");
     k.setAttribute("type", "submit");
     k.setAttribute("id", "submit");
-    k.setAttribute("onclick", "CheckAnswer()");
+    if (y1.checked){
+        k.setAttribute("onclick", "checkAnswer('y1',qAndA(),count)");
+    }
+    if (y2.checked){
+        k.setAttribute("onclick", "checkAnswer('y2',qAndA(),count)");
+    }
+    if (y3.checked){
+        k.setAttribute("onclick", "checkAnswer('y3',qAndA(),count)");
+    }
+    if (y4.checked){
+        k.setAttribute("onclick", "checkAnswer('y4',qAndA(),count)");
+    }
+
     element.appendChild(k);
     document.getElementById("submit").value = "Submit";
 
+    if (document.getElementById('submit').onclick) {
+        // Next Page
+        var num = counter - 1;
+        if (num == 19) {
+            var k0 = document.createElement("INPUT");
+            k0.setAttribute("type", "submit");
+            k0.setAttribute("id", "submitnext");
+            k0.setAttribute("onclick", "final()");
+            element.appendChild(k0);
+            document.getElementById("submitnext").value = "See Result";
+        } else {
+            increment();
+            var k1 = document.createElement("INPUT");
+            k1.setAttribute("type", "submit");
+            k1.setAttribute("id", "submitnext");
+            k1.setAttribute("onclick", "AnswerQuestion()");
+            element.appendChild(k1);
 
-    // Next Page
-    var num = counter-1;
-    if (num == 19){
-        var k0 = document.createElement("INPUT");
-        k0.setAttribute("type", "submit");
-        k0.setAttribute("id", "submit");
-        k0.setAttribute("onclick", "final()");
-        element.appendChild(k0);
-        document.getElementById("submit").value = "See Result";
-    }
-    else{
-        var k1 = document.createElement("INPUT");
-        k1.setAttribute("type", "submit");
-        k1.setAttribute("id", "submit");
-        k1.setAttribute("onclick", "AnswerQuestion()");
-        element.appendChild(k1);
-
-        document.getElementById("submit").value = "Next Question";
+            document.getElementById("submitnext").value = "Next Question";
+        }
     }
 
     $( function() {
