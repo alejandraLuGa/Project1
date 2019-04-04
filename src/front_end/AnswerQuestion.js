@@ -84,6 +84,7 @@ function answerQuestion(){
         document.getElementById("submit").value = "See Result";
     }
     else{
+        increment();
         var k1 = document.createElement("INPUT");
         k1.setAttribute("type", "submit");
         k1.setAttribute("id", "submit");
