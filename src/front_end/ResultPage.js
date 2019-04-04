@@ -5,12 +5,14 @@ function final(){
     var ol = document.getElementById("selectable");
     var clockdiv = document.getElementById("clockdiv");
     var submit = document.getElementById("submit");
+    var submitnext = document.getElementById("submitnext");
     var element = document.getElementById("set");
     //delete elements
     h2.innerHTML = "Ranking";
     element.removeChild(ol);
     element.removeChild(p);
     element.removeChild(submit);
+    element.removeChild(submitnext);
 
     var oll = document.createElement("OL");
     oll.setAttribute("id", "rank");
