@@ -24,6 +24,7 @@ function checkAnswer (answer,list1,c) {
         score += 0
     }
 }
+module.exports = checkAnswer;
 //testing for checkAnswer()
 //*****this works but I've to figure out how to import js files****
 //var list1 = qAndA ();
