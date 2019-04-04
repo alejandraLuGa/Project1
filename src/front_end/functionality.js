@@ -15,6 +15,7 @@ function qAndA () {
 //testing for qAndA()
 //console.log (qAndA ())
 
+//shuffles individual question list of answers
 function shuffleAnswers (list1) {
   list1.sort(function(a, b){return 0.5 - Math.random()});
   return list1
@@ -25,6 +26,8 @@ function shuffleAnswers (list1) {
 //console.log(shuffleAnswers (list1[0]["choices"]));
 //console.log(list1[0]["choices"]);
 
+
+//shuffels the answers of the whole list of 20 questions
 function shuffleAnsInList (list1){
   for (var i = 0; i < list1.length; i++){
     shuffleAnswers (list1[i]["choices"])
