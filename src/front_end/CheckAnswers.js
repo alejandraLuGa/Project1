@@ -7,16 +7,16 @@ function checkAnswer (answer,list1,c) {
             index = i
         }
     }
-    if (index == 0 && answer == "y1"){
+    if (index == 0 && answer == 'y1'){
         score += 5
     }
-    else if (index == 1 && answer == "y2"){
+    else if (index == 1 && answer == 'y2'){
         score += 5
     }
-    else if (index == 2 && answer == "y3"){
+    else if (index == 2 && answer == 'y3'){
         score += 5
     }
-    else if (index == 3 && answer == "y4"){
+    else if (index == 3 && answer == 'y4'){
         score += 5
     }
     else {

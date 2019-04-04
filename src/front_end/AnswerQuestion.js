@@ -68,7 +68,19 @@ function answerQuestion(){
     var k = document.createElement("INPUT");
     k.setAttribute("type", "submit");
     k.setAttribute("id", "submit");
-    k.setAttribute("onclick", "CheckAnswer()");
+    if (y1.checked){
+        k.setAttribute("onclick", "checkAnswer('y1',qAndA(),count)");
+    }
+    if (y2.checked){
+        k.setAttribute("onclick", "checkAnswer('y2',qAndA(),count)");
+    }
+    if (y3.checked){
+        k.setAttribute("onclick", "checkAnswer('y3',qAndA(),count)");
+    }
+    if (y4.checked){
+        k.setAttribute("onclick", "checkAnswer('y4',qAndA(),count)");
+    }
+
     element.appendChild(k);
     document.getElementById("submit").value = "Submit";
 
