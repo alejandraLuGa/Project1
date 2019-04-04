@@ -96,7 +96,7 @@ function AnswerQuestion(){
     var k = document.createElement("INPUT");
     k.setAttribute("type", "submit");
     k.setAttribute("id", "submit");
-    k.setAttribute("onclick","checkAnswers(answeid, qAndA(),counter);nextpage()");
+    k.setAttribute("onclick","checkAnswer(answerid, qAndA(),counter);nextpage()");
     set.appendChild(k);
     document.getElementById("submit").value = "Submit";
 
